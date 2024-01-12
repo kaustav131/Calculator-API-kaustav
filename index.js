@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
 app.post("/add", (req, res) => {
   const { num1, num2 } = req.body;
   if (typeof num1 !== "number" || typeof num2 !== "number") {
-    return res.send({ status: "error" });
+    return res.send({ status: "error" , message:"type error"});
   }
   res.send({
     status: "success",
