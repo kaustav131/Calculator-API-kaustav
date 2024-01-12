@@ -16,7 +16,8 @@ app.get('/', (req, res) => {
 
 app.post('/add', (req, res)=>{
   const {num1, num2} = req.body
-
+  if(typeof num1 != Number || typeof num2 != Number)
+  return res.send({status: "error"})
   res.send({          
     status: "success",  
     message: "the sum of given two numbers",  
