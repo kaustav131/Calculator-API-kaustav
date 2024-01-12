@@ -57,7 +57,58 @@ app.post("/sub", (req, res) => {
   res.send({
     status: "success",
     message: "the difference of given two numbers",
-    sum: result,
+    difference: result,
+  });
+});
+
+app.post("/multiply", (req, res) => {
+  const { num1, num2 } = req.body;
+  if (!num2 || !num1) {
+    return res.send({ status: "error", message: "numbers not found" });
+  }
+  if (typeof num1 !== "number" || typeof num2 !== "number") {
+    return res.send({ status: "error", message: "Invalid data types" });
+  }
+  const result = num1 * num2;
+
+  if (num1 > 1000000 || num2 > 1000000 || result > 1000000) {
+    return res.send({ status: "error", message: "Overflow" });
+  }
+  if (num1 < -1000000 || num2 < -1000000 || result < -1000000) {
+    return res.send({ status: "error", message: "Underflow" });
+  }
+
+  res.send({
+    status: "success",
+    message: "The product of given numbers",
+    result: result,
+  });
+});
+
+app.post("/divide", (req, res) => {
+  const { num1, num2 } = req.body;
+  if (!num2 || !num1) {
+    return res.send({ status: "error", message: "numbers not found" });
+  }
+  if (typeof num1 !== "number" || typeof num2 !== "number") {
+    return res.send({ status: "error", message: "Invalid data types" });
+  }
+  if (num2 == 0) {
+    return res.send({ status: "error", message: "Cannot divide by zero" });
+  }
+  const result = num1 / num2;
+
+  if (num1 > 1000000 || num2 > 1000000 || result > 1000000) {
+    return res.send({ status: "error", message: "Overflow" });
+  }
+  if (num1 < -1000000 || num2 < -1000000 || result < -1000000) {
+    return res.send({ status: "error", message: "Underflow" });
+  }
+
+  res.send({
+    status: "success",
+    message: "The division of given numbers",
+    result: result,
   });
 });
 
