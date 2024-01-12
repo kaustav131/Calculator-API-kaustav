@@ -13,4 +13,15 @@ app.get('/', (req, res) => {
 });
 
 //your code here
+
+app.post('/add', (req, res)=>{
+  const {num1, num2} = req.body
+
+  res.send({          
+    status: "success",  
+    message: "the sum of given two numbers",  
+    sum: num1+num2
+    })
+})
+
 module.exports = app;
