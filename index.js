@@ -16,7 +16,7 @@ app.get("/", (req, res) => {
 
 app.post("/add", (req, res) => {
   const { num1, num2 } = req.body;
-  if (!num2 || !num1) {
+  if (num1 == null || num2 == null) {
     return res.send({ status: "error", message: "numbers not found" });
   }
   if (typeof num1 !== "number" || typeof num2 !== "number") {
@@ -39,13 +39,13 @@ app.post("/add", (req, res) => {
 
 app.post("/sub", (req, res) => {
   const { num1, num2 } = req.body;
-  if (!num2 || !num1) {
+  if (num1 == null || num2 == null) {
     return res.send({ status: "error", message: "numbers not found" });
   }
   if (typeof num1 !== "number" || typeof num2 !== "number") {
     return res.send({ status: "error", message: "Invalid data types" });
   }
-  const result = Math.abs(num1 - num2);
+  const result = num1 - num2;
 
   if (num1 > 1000000 || num2 > 1000000 || result > 1000000) {
     return res.send({ status: "error", message: "Overflow" });
@@ -63,7 +63,7 @@ app.post("/sub", (req, res) => {
 
 app.post("/multiply", (req, res) => {
   const { num1, num2 } = req.body;
-  if (!num2 || !num1) {
+  if (num1 == null || num2 == null) {
     return res.send({ status: "error", message: "numbers not found" });
   }
   if (typeof num1 !== "number" || typeof num2 !== "number") {
@@ -87,7 +87,7 @@ app.post("/multiply", (req, res) => {
 
 app.post("/divide", (req, res) => {
   const { num1, num2 } = req.body;
-  if (!num2 || !num1) {
+  if (num1 == null || num2 == null) {
     return res.send({ status: "error", message: "numbers not found" });
   }
   if (typeof num1 !== "number" || typeof num2 !== "number") {
