@@ -22,15 +22,14 @@ app.post("/add", (req, res) => {
   if (typeof num1 !== "number" || typeof num2 !== "number") {
     return res.send({ status: "error", message: "Invalid data types" });
   }
-  if (Math.abs(num1) > 1000000 || Math.abs(num2) > 1000000) {
-    return res.send({ status: "error", message: "Overflow" });
-  }
   const result = num1 + num2;
-  if (Math.abs(result) > 1000000) {
+  if (num1 > 1000000 || num2 > 1000000 || result > 1000000) {
     return res.send({ status: "error", message: "Overflow" });
-  } else if (Math.abs(result) < -1000000) {
-    return res.send({ status: "error", message: "Undeflow" });
   }
+  if (num1 < -1000000 || num2 < -1000000 || result < -1000000) {
+    return res.send({ status: "error", message: "Underflow" });
+  }
+ 
   res.send({
     status: "success",
     message: "the sum of given two numbers",
