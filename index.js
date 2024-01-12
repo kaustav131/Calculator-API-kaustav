@@ -20,7 +20,7 @@ app.post("/add", (req, res) => {
     return res.send({ status: "error" , message:"numbers not found"});
   }
   if (typeof num1 !== "number" || typeof num2 !== "number") {
-    return res.send({ status: "error" , message:"type error"});
+    return res.send({ status: "error" , message:"Invalid data types"});
   }
   res.send({
     status: "success",
