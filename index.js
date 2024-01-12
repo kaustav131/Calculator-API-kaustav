@@ -29,10 +29,34 @@ app.post("/add", (req, res) => {
   if (num1 < -1000000 || num2 < -1000000 || result < -1000000) {
     return res.send({ status: "error", message: "Underflow" });
   }
- 
+
   res.send({
     status: "success",
     message: "the sum of given two numbers",
+    sum: result,
+  });
+});
+
+app.post("/sub", (req, res) => {
+  const { num1, num2 } = req.body;
+  if (!num2 || !num1) {
+    return res.send({ status: "error", message: "numbers not found" });
+  }
+  if (typeof num1 !== "number" || typeof num2 !== "number") {
+    return res.send({ status: "error", message: "Invalid data types" });
+  }
+  const result = Math.abs(num1 - num2);
+
+  if (num1 > 1000000 || num2 > 1000000 || result > 1000000) {
+    return res.send({ status: "error", message: "Overflow" });
+  }
+  if (num1 < -1000000 || num2 < -1000000 || result < -1000000) {
+    return res.send({ status: "error", message: "Underflow" });
+  }
+
+  res.send({
+    status: "success",
+    message: "the difference of given two numbers",
     sum: result,
   });
 });
