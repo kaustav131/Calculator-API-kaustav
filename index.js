@@ -16,6 +16,7 @@ app.get("/", (req, res) => {
 
 app.post("/add", (req, res) => {
   const { num1, num2 } = req.body;
+  console.log(req.body)
   if (num1 == null || num2 == null) {
     return res.send({ status: "error", message: "numbers not found" });
   }
